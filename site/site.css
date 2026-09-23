@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #071018;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game {
+  position: relative;
+  width: min(100vw, 1400px);
+  height: min(100vh, 800px);
+  overflow: hidden;
+  background: #101820;
+  border: 2px solid #263846;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: auto;
+}
+
+#hud {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+
+  display: flex;
+  gap: 12px;
+
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hud-box {
+  background: rgba(4, 10, 16, 0.78);
+  border: 1px solid rgba(90, 210, 255, 0.4);
+  border-radius: 8px;
+  padding: 9px 13px;
+
+  color: white;
+  font-size: 15px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#energy {
+  letter-spacing: 3px;
+  margin-left: 5px;
+}
+
+#controls {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 8px 15px;
+
+  color: #dff8ff;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+
+  font-size: 13px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#controls b {
+  color: #6de7ff;
+}
+
+#message {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+
+  text-shadow: 0 2px 5px black;
+
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  pointer-events: none;
+  z-index: 20;
+}
+
+#startScreen,
+#levelComplete,
+#gameComplete {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(2, 8, 14, 0.88);
+
+  color: white;
+  text-align: center;
+
+  z-index: 100;
+}
+
+#levelComplete,
+#gameComplete {
+  display: none;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(32px, 5vw, 64px);
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(80, 210, 255, 0.4);
+}
+
+p {
+  color: #a9c6d1;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+button {
+  border: 0;
+  padding: 14px 28px;
+
+  background: #36bce8;
+  color: #061018;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 700px) {
+  #hud {
+    flex-wrap: wrap;
+  }
+
+  .hud-box {
+    font-size: 12px;
+    padding: 7px 9px;
+  }
+
+  #controls {
+    font-size: 10px;
+  }
+}
