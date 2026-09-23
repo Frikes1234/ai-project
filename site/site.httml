@@ -1,0 +1,45 @@
+<div id="game">
+  <canvas id="canvas"></canvas>
+
+  <div id="hud">
+    <div class="hud-box">
+      <span>ЭНЕРГИЯ:</span>
+      <span id="energy">❤️❤️❤️</span>
+    </div>
+
+    <div class="hud-box">
+      УРОВЕНЬ: <span id="levelNumber">1</span>
+    </div>
+
+    <div class="hud-box">
+      МИКРОЧИПЫ: <span id="chips">0</span>/15
+    </div>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="controls">
+    <b>W</b> — прыжок / Wall Jump
+    &nbsp;&nbsp;
+    <b>A</b> — влево
+    &nbsp;&nbsp;
+    <b>D</b> — вправо
+  </div>
+
+  <div id="startScreen">
+    <h1>ПРОТОКОЛ: АРТЕМ</h1>
+    <p>Секретная лаборатория</p>
+    <button id="startButton">НАЧАТЬ ИГРУ</button>
+  </div>
+
+  <div id="levelComplete">
+    <h1>УРОВЕНЬ ПРОЙДЕН!</h1>
+    <button id="nextButton">СЛЕДУЮЩИЙ УРОВЕНЬ</button>
+  </div>
+
+  <div id="gameComplete">
+    <h1>ПОБЕГ ЗАВЕРШЁН!</h1>
+    <p>Артем выбрался из лаборатории.</p>
+    <button id="restartButton">ИГРАТЬ СНОВА</button>
+  </div>
+</div>
