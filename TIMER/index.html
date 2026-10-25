@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Таймер до важного события</title>
+  <!-- Шрифт подгружается из интернета; если сети нет, сработает запасной системный шрифт из CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">⏳</span>
+      <div>
+        <p class="brand-kicker">Школьный проект</p>
+        <h1>Таймер до важного события</h1>
+      </div>
+    </div>
+    <p class="lead">Добавляйте праздники и свои события: все таймеры идут одновременно, а выбранный показывается крупно.</p>
+  </header>
+
+  <main>
+    <!-- Главный блок: название, дата и большой обратный отсчёт -->
+    <section class="hero card" aria-labelledby="event-title">
+      <p class="hero-label">Сейчас считаем до</p>
+      <h2 id="event-title">Новый год</h2>
+      <p class="event-date" id="event-date">1 января 2027</p>
+
+      <div class="timer" id="timer" aria-live="polite">
+        <div class="timer-unit">
+          <span class="timer-value" id="days">00</span>
+          <span class="timer-caption">дней</span>
+        </div>
+        <span class="timer-sep" aria-hidden="true">:</span>
+        <div class="timer-unit">
+          <span class="timer-value" id="hours">00</span>
+          <span class="timer-caption">часов</span>
+        </div>
+        <span class="timer-sep" aria-hidden="true">:</span>
+        <div class="timer-unit">
+          <span class="timer-value" id="minutes">00</span>
+          <span class="timer-caption">минут</span>
+        </div>
+        <span class="timer-sep" aria-hidden="true">:</span>
+        <div class="timer-unit">
+          <span class="timer-value" id="seconds">00</span>
+          <span class="timer-caption">секунд</span>
+        </div>
+      </div>
+
+      <p class="arrived-message" id="arrived-message" hidden>Событие уже наступило!</p>
+    </section>
+
+    <!-- Выбор готовых событий -->
+    <section class="card" aria-labelledby="choose-title">
+      <h2 id="choose-title">Выберите событие</h2>
+      <p class="section-hint">Нажмите на праздник, чтобы добавить его в список. Перед добавлением сайт попросит подтверждение.</p>
+      <div class="event-grid" id="preset-events"></div>
+    </section>
+
+    <!-- Своё событие -->
+    <section class="card" aria-labelledby="custom-title">
+      <h2 id="custom-title">Добавить своё событие</h2>
+      <p class="section-hint">Можно создать несколько своих таймеров — они не заменяют друг друга и тикают вместе.</p>
+      <form id="custom-form" class="custom-form" novalidate>
+        <label>
+          Название события
+          <input type="text" id="custom-name" name="name" maxlength="60" placeholder="Например: День рождения" required>
+        </label>
+        <label>
+          Дата и время
+          <input type="datetime-local" id="custom-date" name="date" required>
+        </label>
+        <button type="button" class="btn" id="custom-submit">Добавить таймер</button>
+      </form>
+    </section>
+
+    <!-- Все активные таймеры сразу -->
+    <section class="card" aria-labelledby="list-title">
+      <h2 id="list-title">Все таймеры</h2>
+      <p class="section-hint">Здесь видны все события сразу. Главный таймер сверху можно сменить кнопкой «На главный экран».</p>
+      <div class="timers-grid" id="timers-list"></div>
+      <p class="empty-timers" id="timers-empty" hidden>Пока нет таймеров. Добавьте праздник или своё событие.</p>
+    </section>
+
+    <!-- Три ежедневных блока -->
+    <section class="daily-grid" aria-label="Ежедневные блоки">
+      <article class="card daily-card">
+        <h2>Факт дня</h2>
+        <p id="fact-of-day">Загрузка факта…</p>
+      </article>
+
+      <article class="card daily-card image-card">
+        <h2>Картинка дня</h2>
+        <figure>
+          <!-- Картинка вставляется из JS как SVG, чтобы работать и через file:// -->
+          <div class="daily-illustration" id="image-of-day" role="img" aria-label="Тематическая иллюстрация дня"></div>
+          <figcaption id="image-caption">Доброе утро нового дня</figcaption>
+        </figure>
+      </article>
+
+      <article class="card daily-card">
+        <h2>Фраза дня</h2>
+        <blockquote id="quote-of-day">Загрузка цитаты…</blockquote>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Все таймеры сохраняются в браузере (localStorage) и работают без сервера.</p>
+  </footer>
+
+  <!-- Модальное окно подтверждения смены события -->
+  <div class="modal" id="confirm-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <h3 id="confirm-title">Подтвердите выбор</h3>
+      <p id="confirm-text">Сменить событие?</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="confirm-no">Отмена</button>
+        <button type="button" class="btn" id="confirm-yes">Да, выбрать</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- data.js объявляет только одно пространство имён; app.js его использует -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
