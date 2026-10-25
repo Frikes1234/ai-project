@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label=">2K9 3>4">
+  <rect width="640" height="360" fill="#102033"/>
+  <circle cx="70" cy="50" r="2" fill="#fff"/>
+  <circle cx="140" cy="90" r="3" fill="#ffe08a"/>
+  <circle cx="260" cy="40" r="2" fill="#fff"/>
+  <circle cx="380" cy="80" r="2" fill="#fff"/>
+  <circle cx="500" cy="45" r="3" fill="#ffe08a"/>
+  <circle cx="580" cy="100" r="2" fill="#fff"/>
+  <polygon points="320,40 390,210 250,210" fill="#1b6b3a"/>
+  <polygon points="320,90 370,230 270,230" fill="#237a44"/>
+  <polygon points="320,140 355,250 285,250" fill="#2d8a50"/>
+  <rect x="308" y="250" width="24" height="40" fill="#6b3e1a"/>
+  <circle cx="300" cy="130" r="7" fill="#d00000"/>
+  <circle cx="345" cy="170" r="7" fill="#e0b84a"/>
+  <circle cx="290" cy="200" r="7" fill="#e85d04"/>
+  <rect y="300" width="640" height="60" fill="#dce6f2"/>
+</svg>
